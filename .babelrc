@@ -1,0 +1,12 @@
+{
+  "presets": [
+    ["@babel/preset-env", { 
+      "modules" : false,
+      "targets": {
+        "android": "4.4.3",
+        "ios": "8"
+      }
+    }]
+  ],
+  "plugins": ["@babel/plugin-syntax-dynamic-import"]
+}
