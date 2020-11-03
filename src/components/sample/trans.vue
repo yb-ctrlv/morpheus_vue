@@ -2,16 +2,14 @@
   <div id="container" class="submain api">
     <section id="scroll">
       <pre>
-        JQUERY의 slide up/down만 예제로 구현하였습니다.
-        기타 transition은 공식 도큐먼트를 참조하십시오.
+        JQUERY의 slide up/down을 라이브러리를 통해 구현하였습니다.
+        transition을 통해서 여러가지 애니매이션이 가능합니다.
       </pre>
       <div>
         <button @click="slide = !slide">슬라이드 토글</button>
-        <transition name="slide">
-          <ul v-if="slide">
+        <slide-up-down :active="slide" tag="ul" :duration="500" >
             <li v-for="(item, index) in 10" :key="index">HELLO{{item}}</li>
-          </ul>
-        </transition>
+        </slide-up-down>
       </div>
     </section>
   </div>
@@ -70,21 +68,4 @@ export default {
   선언할 경우 component 안에서만 적용됩니다.
  -->
 <style scoped>
-  .slide-enter-active {
-    transition-duration: 0.3s;
-    transition-timing-function: ease-in;
-  }
-  .slide-leave-active {
-    transition-duration: 0.3s;
-    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-  }
-  .slide-enter-to, .slide-leave {
-    max-height: 100px;
-    overflow: hidden;
-  }
-
-  .slide-enter, .slide-leave-to {
-    overflow: hidden;
-    max-height: 0;
-  }
 </style>

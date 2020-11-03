@@ -7,6 +7,7 @@ import Vue from 'vue';
 import Loading from 'vue-loading-overlay';
 import Fragment from 'vue-fragment';
 import { ValidationProvider, ValidationObserver } from 'vee-validate';
+import SlideUpDown from 'vue-slide-up-down';
 
 import './vee-validate';
 import './$mcore';
@@ -23,6 +24,7 @@ Vue.use(Fragment.Plugin);
 
 Vue.component('validation-provider', ValidationProvider);
 Vue.component('validation-observer', ValidationObserver);
+Vue.component('slide-up-down', SlideUpDown);
 
 ValidationObserver.prototype.anyError = function () {
   const keys = Object.keys(this.errors);
