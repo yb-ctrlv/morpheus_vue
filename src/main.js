@@ -44,15 +44,6 @@ $mcore.MCommon('onback', function () {
   this.$router.go(-1);
 });
 
-Vue.directive('back', {
-  bind(el) {
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      router.go(-1);
-    });
-  },
-});
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

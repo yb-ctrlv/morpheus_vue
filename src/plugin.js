@@ -1,4 +1,6 @@
 /* eslint no-param-reassign:0 */
+import router from './router';
+
 const { CONSTANT } = process.env;
 
 export default {
@@ -14,6 +16,14 @@ export default {
     //   // 필요한 로직 ...
     //   },
     // });
+    Vue.directive('back', {
+      bind(el) {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          router.go(-1);
+        });
+      },
+    });
 
     // 3. 컴포넌트 옵션 주입
     // Vue.mixin({
