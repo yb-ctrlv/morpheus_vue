@@ -7,7 +7,6 @@
 
 */
 /* eslint no-param-reassign:0 */
-import _last from 'lodash/last';
 import router from './router';
 
 const CallbackController = (function () {
@@ -18,18 +17,15 @@ const CallbackController = (function () {
   };
   controller.prototype = {
     batch() {
-      let $instance;
-      const $vues = _last(router.currentRoute.matched).instances;
-      $instance = $vues;
-      if (Object.keys($vues).length === 1) {
-        $instance = $vues.default;
-      }
-      const _cbs = this.buffer[router.app.$route.name] || [];
-      this.buffer.common.map((x) => {
-        x.apply($instance, arguments);
+      const matchedArr = router.currentRoute.matched;
+      const $vues = matchedArr[matchedArr.length - 1].instances;
+      const $instance = Object.keys($vues).length === 1 ? $vues.default : $vues;
+      const cbArr = this.buffer[router.app.$route.name] || [];
+      this.buffer.common.map((cb) => {
+        cb.apply($vues.default, arguments);
       });
-      _cbs.map((x) => {
-        x.apply($instance, arguments);
+      cbArr.map((cb) => {
+        cb.apply($instance, arguments);
       });
     },
     set(name, cb) {
