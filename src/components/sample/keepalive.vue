@@ -1,18 +1,16 @@
 <template>
   <div id="container" class="submain api">
     <section id="scroll">
-      <pre>
-        JQUERY의 slide up/down을 라이브러리를 통해 구현하였습니다.
-        transition을 통해서 여러가지 애니매이션이 가능합니다.
-      </pre>
-      <div>
-        <button @click="slide = !slide">슬라이드 토글</button>
-        <slide-up-down :active="slide" tag="ul" :duration="500" >
-            <li v-for="(item, index) in 10" :key="index">HELLO{{item}}</li>
-        </slide-up-down>
-      </div>
+      <router-link tag="button" :to="{ name: 'simple-div' }">Simple 1 Move</router-link>
+      <router-link tag="button" :to="{ name: 'simple-div2' }">Simple 2 Move</router-link>
+      <keep-alive :exclude="['simple-div2']">
+        <router-view></router-view>
+      </keep-alive>
       <p>
-        당겨서 새로고침 구현
+        컴포넌트는 기본적으로 생명주기를 가지고 있습니다. create - mount - destory <br>
+        하지만 create - mount에 많은 자원이 소모된다면 <br>
+        destory를 하지않도록 keep alive 태그를 통해 설정할 수 있습니다. <br>
+        이는 다시 화면에 나타날때 activate 라는 생명주기 메서드를 실행합니다.
       </p>
     </section>
   </div>
@@ -20,23 +18,12 @@
 
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
-import PullToRefresh from 'pulltorefreshjs';
 
-window.pull = PullToRefresh;
 export default {
-  name: 'sample-transition',
+  name: 'sample-keepalive',
   data() {
     return {
-      slide: false,
     };
-  },
-  mounted() {
-    PullToRefresh.init({
-      mainElement: '#scroll',
-      onRefresh() {
-        console.log('REFRESH!');
-      },
-    });
   },
   computed: {
     ...mapState({}),
@@ -81,4 +68,5 @@ export default {
   선언할 경우 component 안에서만 적용됩니다.
  -->
 <style scoped>
+
 </style>

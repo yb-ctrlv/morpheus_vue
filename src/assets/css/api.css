@@ -8,7 +8,9 @@
 .api-list	li.disabled	{}
 .api-list	li.disabled	button	{ pointer-events:none; color:#ccc; }
 
-.api	{}
+.api	{
+  font-size: 1.5rem;
+}
 
 .api	button	{ padding:5px; font-size:14px; border:1px solid #ccc; margin:10px 0; }
-.api	pre	{padding:10px; background:#fff; margin-bottom:10px;}
+.api	pre,.api p	{padding:10px; background:#fff; margin-bottom:10px;}

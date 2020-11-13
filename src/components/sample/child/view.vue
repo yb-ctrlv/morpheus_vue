@@ -1,18 +1,17 @@
 <template>
   <div id="container" class="submain api">
     <section id="scroll">
-      <pre>
-        JQUERY의 slide up/down을 라이브러리를 통해 구현하였습니다.
-        transition을 통해서 여러가지 애니매이션이 가능합니다.
-      </pre>
-      <div>
-        <button @click="slide = !slide">슬라이드 토글</button>
-        <slide-up-down :active="slide" tag="ul" :duration="500" >
-            <li v-for="(item, index) in 10" :key="index">HELLO{{item}}</li>
-        </slide-up-down>
-      </div>
+      <div>부모의 state.msg : {{state.msg}}</div>
+      <child
+      @callback="childCallback" :msg="'부모 메시지'"
+      :obj="{msg:'부모 데이터'}"
+      v-model="state.msg"
+      >slot 값 전달!</child>
       <p>
-        당겨서 새로고침 구현
+        단방향 데이터 구조의 Vue는 부모의 데이터를 자식 컴포넌트내에서 수정되지 않습니다 <br>
+        ex) child component 에서 props로 전달받은 상태값 msg <br>
+         this.msg = '자식에서 수정 안됨!'; 실행시 에러 및 경고를 발생시킵니다 <br>
+         때문에 emit 또는 v-model을 통해 부모의 이벤트를 전달받아 실행 시켜야합니다.
       </p>
     </section>
   </div>
@@ -20,23 +19,19 @@
 
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
-import PullToRefresh from 'pulltorefreshjs';
+import Child from './component/Child';
 
-window.pull = PullToRefresh;
 export default {
-  name: 'sample-transition',
+  name: 'sample-child',
+  components: {
+    Child,
+  },
   data() {
     return {
-      slide: false,
-    };
-  },
-  mounted() {
-    PullToRefresh.init({
-      mainElement: '#scroll',
-      onRefresh() {
-        console.log('REFRESH!');
+      state: {
+        msg: '',
       },
-    });
+    };
   },
   computed: {
     ...mapState({}),
@@ -45,6 +40,9 @@ export default {
   methods: {
     ...mapMutations([]),
     ...mapActions([]),
+    childCallback() {
+      console.log(arguments);
+    },
   },
   watch: {
 
@@ -81,4 +79,5 @@ export default {
   선언할 경우 component 안에서만 적용됩니다.
  -->
 <style scoped>
+
 </style>

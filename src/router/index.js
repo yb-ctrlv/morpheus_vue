@@ -13,7 +13,11 @@ const sampleStore = () => import(/* webpackChunkName: "chunk/sample-store" */'..
 const sampleTrans = () => import(/* webpackChunkName: "chunk/sample-trans" */'../components/sample/trans');
 const sampleApi = () => import(/* webpackChunkName: "chunk/sample-api" */'../components/sample/api');
 const sampleSwiper = () => import(/* webpackChunkName: "chunk/sample-swiper" */'../components/sample/swiper');
-
+const sampleBasic = () => import(/* webpackChunkName: "chunk/sample-basic" */'../components/sample/basic');
+const samplekeepalive = () => import(/* webpackChunkName: "chunk/sample-keepalive" */'../components/sample/keepalive');
+const simpleDiv = () => import(/* webpackChunkName: "chunk/simple-div" */'../components/sample/component/simple');
+const simpleDiv2 = () => import(/* webpackChunkName: "chunk/simple-div" */'../components/sample/component/simple2');
+const sampleChild = () => import(/* webpackChunkName: "chunk/child" */'../components/sample/child/view');
 Vue.use(Router);
 
 const router = new Router({
@@ -33,6 +37,16 @@ const router = new Router({
         { path: 'trans', name: 'sample-trans', component: sampleTrans },
         { path: 'api', name: 'sample-api', component: sampleApi },
         { path: 'swiper', name: 'sample-swiper', component: sampleSwiper },
+        { path: 'basic', name: 'sample-basic', component: sampleBasic },
+        { path: 'child', name: 'sample-child', component: sampleChild },
+        { path: 'keepalive',
+          name: 'sample-keepalive',
+          redirect: 'keepalive/simpleDiv',
+          component: samplekeepalive,
+          children: [
+            { path: 'simpleDiv', name: 'simple-div', component: simpleDiv },
+            { path: 'simpleDiv2', name: 'simple-div2', component: simpleDiv2 },
+          ] },
       ] },
   ],
 });

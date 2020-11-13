@@ -11,6 +11,7 @@ import SlideUpDown from 'vue-slide-up-down';
 
 import './vee-validate';
 import './$mcore';
+import IptText from './components/global/ipt-text';
 import App from './App';
 import store from './store';
 import router from './router';
@@ -25,6 +26,7 @@ Vue.use(Fragment.Plugin);
 Vue.component('validation-provider', ValidationProvider);
 Vue.component('validation-observer', ValidationObserver);
 Vue.component('slide-up-down', SlideUpDown);
+Vue.component('ipt-text', IptText);
 
 ValidationObserver.prototype.anyError = function () {
   const keys = Object.keys(this.errors);

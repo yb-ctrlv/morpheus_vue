@@ -1,42 +1,42 @@
 <template>
-  <div id="container" class="submain api">
-    <section id="scroll">
-      <pre>
-        JQUERY의 slide up/down을 라이브러리를 통해 구현하였습니다.
-        transition을 통해서 여러가지 애니매이션이 가능합니다.
-      </pre>
-      <div>
-        <button @click="slide = !slide">슬라이드 토글</button>
-        <slide-up-down :active="slide" tag="ul" :duration="500" >
-            <li v-for="(item, index) in 10" :key="index">HELLO{{item}}</li>
-        </slide-up-down>
-      </div>
-      <p>
-        당겨서 새로고침 구현
-      </p>
-    </section>
+<div>
+  <h1>자식 컴포넌트</h1>
+  <button @click="$emit('callback', {msg: '자식 데이터'})">$emit('callback', {msg: '자식 데이터'})</button>
+  <input :value="value" @input="$emit('input', $event.target.value)" >
+  <div> props.msg: {{msg}}</div>
+  <div>post.obj: {{JSON.stringify(obj)}}</div>
+  <div>
+    <slot>slot 기본값</slot>
   </div>
+</div>
 </template>
 
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
-import PullToRefresh from 'pulltorefreshjs';
 
-window.pull = PullToRefresh;
 export default {
-  name: 'sample-transition',
+  name: 'child',
+  props: {
+    value: {
+      type: String,
+      default: '',
+    },
+    msg: {
+      type: String,
+      default: '기본값',
+    },
+    obj: {
+      type: Object,
+      default() {
+        return {
+          msg: '기본값',
+        };
+      },
+    },
+  },
   data() {
     return {
-      slide: false,
     };
-  },
-  mounted() {
-    PullToRefresh.init({
-      mainElement: '#scroll',
-      onRefresh() {
-        console.log('REFRESH!');
-      },
-    });
   },
   computed: {
     ...mapState({}),
@@ -81,4 +81,5 @@ export default {
   선언할 경우 component 안에서만 적용됩니다.
  -->
 <style scoped>
+
 </style>

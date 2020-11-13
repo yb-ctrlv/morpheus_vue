@@ -3,17 +3,20 @@
     <section id="scroll">
       <validation-observer ref="validator" v-slot="{ passed }">
         <validation-provider name="아이디" immediate rules="required" v-slot="{ errors }">
-          아이디: <input type="text" v-model="state.id">
+          <!-- 아이디: <input type="text" :value="state.id" @input="evt=>state.id=evt.target.value"> -->
+          아이디: <ipt-text v-model="state.id"/>
           <p style="color:red;">{{errors[0]}}</p>
         </validation-provider>
         <br>
         <validation-provider name="비밀번호" immediate  rules="required|min:8|verify_password" v-slot="{ errors }">
-          비밀번호: <input type="text" v-model="state.pw">
+          <!-- 비밀번호: <input type="text" :value="state.pw" @input="evt=>state.pw=evt.target.value"> -->
+          비밀번호: <ipt-text v-model="state.pw"/>
           <p style="color:red;">{{errors[0]}}</p>
         </validation-provider>
         <br>
         <validation-provider name="이메일" immediate  rules="required|email" v-slot="{ errors }">
-          이메일: <input type="text" v-model="state.email">
+          <!-- 이메일: <input type="text" :value="state.email" @input="evt=>state.email=evt.target.value"> -->
+          이메일: <ipt-text v-model="state.email"/>
           <p style="color:red;">{{errors[0]}}</p>
         </validation-provider>
         <br>

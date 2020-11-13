@@ -1,42 +1,27 @@
 <template>
-  <div id="container" class="submain api">
-    <section id="scroll">
-      <pre>
-        JQUERY의 slide up/down을 라이브러리를 통해 구현하였습니다.
-        transition을 통해서 여러가지 애니매이션이 가능합니다.
-      </pre>
-      <div>
-        <button @click="slide = !slide">슬라이드 토글</button>
-        <slide-up-down :active="slide" tag="ul" :duration="500" >
-            <li v-for="(item, index) in 10" :key="index">HELLO{{item}}</li>
-        </slide-up-down>
-      </div>
-      <p>
-        당겨서 새로고침 구현
-      </p>
-    </section>
+  <div>
+    <p>{{msg}}</p>
+    <img src="../../../assets/img/sample/@temp_map_img.png" alt="" style="width:100%;">
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
-import PullToRefresh from 'pulltorefreshjs';
 
-window.pull = PullToRefresh;
 export default {
-  name: 'sample-transition',
+  name: 'simple-div',
   data() {
     return {
-      slide: false,
+      msg: '',
     };
   },
-  mounted() {
-    PullToRefresh.init({
-      mainElement: '#scroll',
-      onRefresh() {
-        console.log('REFRESH!');
-      },
-    });
+  created() {
+    this.msg = 'SIMPLE ONE CREATED!';
+    console.log(this.msg);
+  },
+  activated() {
+    this.msg = 'ACTIVATED!';
+    console.log(this.msg);
   },
   computed: {
     ...mapState({}),
@@ -81,4 +66,5 @@ export default {
   선언할 경우 component 안에서만 적용됩니다.
  -->
 <style scoped>
+
 </style>

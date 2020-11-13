@@ -4,6 +4,9 @@
       <div>
         <!-- scroll 영역 -->
         <ul class="api-list">
+          <router-link to="/sample/basic" tag="li"><button type="button">Vue 튜토리얼 1</button></router-link>
+          <router-link to="/sample/keepalive" tag="li"><button type="button">Vue KeepAlive</button></router-link>
+          <router-link to="/sample/child" tag="li"><button type="button">Vue ChildComponent</button></router-link>
           <router-link to="/sample/cycle" tag="li"><button type="button">Activity Life Cycle: 생명주기</button></router-link>
           <router-link to="/sample/validator" tag="li"><button type="button">Vee Validator: 유효성 체크</button></router-link>
           <router-link to="/sample/store" tag="li"><button type="button">Store: vuex 사용 및 store</button></router-link>
