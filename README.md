@@ -86,8 +86,6 @@ router/index.js에서   () => import ...형식으로 컴포넌트를 불러와�
 ```js
 const intro () => import(/* webpackChunkName: "chunk/intro" */'../components/intro');
 ```
- 자주 사용하거나 렌더링 비용이 큰 화면은  <keep-alive>를 통해 destroy를 하지않도록 설정할 수 있다.
-
 
 ## ESlint (필수X)
 ###### 설명
