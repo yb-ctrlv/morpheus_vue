@@ -3,8 +3,8 @@
     <section id="scroll">
       <div>부모의 state.msg : {{state.msg}}</div>
       <child
-      @callback="childCallback" :msg="'부모 메시지'"
-      :obj="{msg:'부모 데이터'}"
+      @callback="childCallback" :msg="state.msg"
+      :obj="obj"
       v-model="state.msg"
       >slot 값 전달!</child>
       <p>
@@ -31,6 +31,9 @@ export default {
       state: {
         msg: '',
       },
+      obj: {
+        msg: '부모 데이터',
+      },
     };
   },
   computed: {
@@ -40,7 +43,8 @@ export default {
   methods: {
     ...mapMutations([]),
     ...mapActions([]),
-    childCallback() {
+    childCallback(childObj) {
+      this.obj = childObj;
       console.log(arguments);
     },
   },

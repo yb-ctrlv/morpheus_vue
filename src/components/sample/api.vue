@@ -34,7 +34,7 @@ export default {
     openCamera() {
       this.$camera()
         .then((result, option) => {
-          this.path.img = result.fullpath;
+          this.result.camera = result.fullpath;
           console.log(result, option);
         })
         .catch((result, option) => {

@@ -61,7 +61,7 @@ npm run clean
   * /router Vue-router 관련 설정
   * /store Vuex(store) 관련 설정
   * main.js Webpack 시작점
-  * App.vue 가장 기본 컴포넌트
+  * App.vue 루트 컴포넌트
   * plugin.js vue 확장 함수 선언
   * vee-validate.js vee-validate관련 설정
   * $mcore.js Mcore 관련 확장 함수 선언

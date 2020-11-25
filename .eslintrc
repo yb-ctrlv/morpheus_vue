@@ -11,16 +11,9 @@
     "vue"
   ],
   "globals": {
-    "Native" : "readonly",
-    "Web" : "readonly",
     "window" : "readonly",
-    "VirtualInterface" : "readonly",
     "arguments" : "readonly",
     "M" : "readonly",
-    "Global" : "writable",
-    "$" : "readonly",
-    "Swiper": "readonly",
-    "CONSTANT": "readonly",
     "$mcore": "readonly"
   },
   "parser": "vue-eslint-parser",

@@ -3,7 +3,7 @@
   <h1>자식 컴포넌트</h1>
   <button @click="$emit('callback', {msg: '자식 데이터'})">$emit('callback', {msg: '자식 데이터'})</button>
   <input :value="value" @input="$emit('input', $event.target.value)" >
-  <div> props.msg: {{msg}}</div>
+  <div>props.msg: {{msg}}</div>
   <div>post.obj: {{JSON.stringify(obj)}}</div>
   <div>
     <slot>slot 기본값</slot>
