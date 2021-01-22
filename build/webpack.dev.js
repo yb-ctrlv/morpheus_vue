@@ -11,7 +11,7 @@ module.exports = Merge(commonConfig, {
       {
         test: /\.css$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          'style-loader',
           {
             loader: 'css-loader',
             options: {
@@ -22,10 +22,10 @@ module.exports = Merge(commonConfig, {
       }
     ]
   },
-  devtool: '#inline-source-map',
+  devtool: 'eval-source-map',
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': env,
+      'process.env': JSON.stringify(env),
     }),
   ]
 });

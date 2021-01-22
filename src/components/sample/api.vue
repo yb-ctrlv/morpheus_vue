@@ -34,8 +34,13 @@ export default {
     openCamera() {
       this.$camera()
         .then((result, option) => {
-          this.result.camera = result.fullpath;
-          console.log(result, option);
+          if (wnIf.device == DT_ANDROID) {
+            // android 일때
+            this.result.camera = result.alias;
+          } else {
+            // ios 일때
+            this.result.camera = result.path;
+          }
         })
         .catch((result, option) => {
           console.log(result, option);

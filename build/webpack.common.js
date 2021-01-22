@@ -95,12 +95,9 @@ module.exports = {
         return 'script';
       },
       include: 'allAssets',
-      fileWhitelist: [/\.(ico|png|jpg|jpeg|gif|svg|css|woff2)$/],
+      fileWhitelist: [/bundle/,/vender/],
       fileBlacklist: [/\.txt/,/swiper/],
     }),
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].css',
-    })
   ],
   optimization: {
     splitChunks: {

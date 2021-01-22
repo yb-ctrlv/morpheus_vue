@@ -24,11 +24,14 @@ module.exports = Merge(commonConfig, {
       }
     ]
   },
-  // devtool: '#inline-source-map',
+  // devtool: 'eval-source-map',
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': env,
+      'process.env': JSON.stringify(env),
     }),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+    })
   ],
   optimization: {
     minimize: true,
