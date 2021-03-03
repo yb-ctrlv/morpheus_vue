@@ -1,5 +1,3 @@
-import _deep from 'lodash/cloneDeep';
-
 const INFO_DATA = () => ({});
 export default {
   state: () => ({
@@ -28,7 +26,7 @@ export default {
   // getter
   getters: {
     getLoginInfo(state) {
-      const info = _deep(state.info);
+      const info = _.cloneDeep(state.info);
       return info;
     },
   },

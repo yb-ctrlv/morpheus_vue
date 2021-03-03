@@ -2,22 +2,22 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 // lazyload 적용
-// () => import(/* webpackChunkName: "chunk/intro" */'../components/intro');
-const intro = () => import(/* webpackChunkName: "chunk/intro" */'../components/intro');
-const home = () => import(/* webpackChunkName: "chunk/home" */'../components/home');
-const sampleRoot = () => import(/* webpackChunkName: "chunk/sample" */'../components/sample/root');
-const sampleList = () => import(/* webpackChunkName: "chunk/sample-list" */'../components/sample/list');
-const sampleCycle = () => import(/* webpackChunkName: "chunk/sample-cycle" */'../components/sample/cycle');
-const sampleValidator = () => import(/* webpackChunkName: "chunk/sample-validator" */'../components/sample/validator');
-const sampleStore = () => import(/* webpackChunkName: "chunk/sample-store" */'../components/sample/store');
-const sampleTrans = () => import(/* webpackChunkName: "chunk/sample-trans" */'../components/sample/trans');
-const sampleApi = () => import(/* webpackChunkName: "chunk/sample-api" */'../components/sample/api');
-const sampleSwiper = () => import(/* webpackChunkName: "chunk/sample-swiper" */'../components/sample/swiper');
-const sampleBasic = () => import(/* webpackChunkName: "chunk/sample-basic" */'../components/sample/basic');
-const samplekeepalive = () => import(/* webpackChunkName: "chunk/sample-keepalive" */'../components/sample/keepalive');
-const simpleDiv = () => import(/* webpackChunkName: "chunk/simple-div" */'../components/sample/component/simple');
-const simpleDiv2 = () => import(/* webpackChunkName: "chunk/simple-div" */'../components/sample/component/simple2');
-const sampleChild = () => import(/* webpackChunkName: "chunk/child" */'../components/sample/child/view');
+// () => import(/* webpackChunkName: "chunk/intro" */'../views/intro');
+const intro = () => import(/* webpackChunkName: "chunk/intro" */'../views/intro');
+const home = () => import(/* webpackChunkName: "chunk/home" */'../views/home');
+const sampleRoot = () => import(/* webpackChunkName: "chunk/sample" */'../views/sample/root');
+const sampleList = () => import(/* webpackChunkName: "chunk/sample-list" */'../views/sample/list');
+const sampleCycle = () => import(/* webpackChunkName: "chunk/sample-cycle" */'../views/sample/cycle');
+const sampleValidator = () => import(/* webpackChunkName: "chunk/sample-validator" */'../views/sample/validator');
+const sampleStore = () => import(/* webpackChunkName: "chunk/sample-store" */'../views/sample/store');
+const sampleTrans = () => import(/* webpackChunkName: "chunk/sample-trans" */'../views/sample/trans');
+const sampleApi = () => import(/* webpackChunkName: "chunk/sample-api" */'../views/sample/api');
+const sampleSwiper = () => import(/* webpackChunkName: "chunk/sample-swiper" */'../views/sample/swiper');
+const sampleBasic = () => import(/* webpackChunkName: "chunk/sample-basic" */'../views/sample/basic');
+const samplekeepalive = () => import(/* webpackChunkName: "chunk/sample-keepalive" */'../views/sample/keepalive');
+const simpleDiv = () => import(/* webpackChunkName: "chunk/simple-div" */'../views/sample/component/simple');
+const simpleDiv2 = () => import(/* webpackChunkName: "chunk/simple-div" */'../views/sample/component/simple2');
+const sampleChild = () => import(/* webpackChunkName: "chunk/child" */'../views/sample/child/view');
 Vue.use(Router);
 
 const router = new Router({

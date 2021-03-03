@@ -1,18 +1,36 @@
 <template>
-  <fragment>
-    <sample-header/>
-    <router-view></router-view>
-  </fragment>
+  <div id="container" class="submain">
+    <section id="scroll">
+      <div>
+        <!-- scroll 영역 -->
+        <ul class="api-list">
+          <api-item :to="'/sample/basic'">Vue 튜토리얼 1</api-item>
+          <api-item :to="'/sample/keepalive'">Vue KeepAlive</api-item>
+          <api-item :to="'/sample/child'">Vue ChildComponent</api-item>
+          <api-item :to="'/sample/cycle'">Activity Life Cycle: 생명주기</api-item>
+          <api-item :to="'/sample/validator'">Vee Validator: 유효성 체크</api-item>
+          <api-item :to="'/sample/store'">Store: vuex 사용 및 store</api-item>
+          <api-item :to="'/sample/trans'">Transition: 트랜지션(애니메이션)</api-item>
+          <api-item :to="'/sample/api'">Morpheus API</api-item>
+          <api-item :to="'/sample/swiper'">Swiper</api-item>
+        </ul>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
-import sampleHeader from './component/header';
+
+const apiItem = {
+  template: '<router-link :to="to" tag="li"><button type="button"><slot></slot></button></router-link>',
+  props: ['to'],
+};
 
 export default {
-  name: 'sample-root',
+  name: 'sample-list',
   components: {
-    sampleHeader,
+    apiItem,
   },
   data() {
     return {

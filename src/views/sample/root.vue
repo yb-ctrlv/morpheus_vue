@@ -1,29 +1,19 @@
 <template>
-  <div id="container" class="submain">
-    <section id="scroll">
-      <div>
-        <!-- scroll 영역 -->
-        <ul class="api-list">
-          <router-link to="/sample/basic" tag="li"><button type="button">Vue 튜토리얼 1</button></router-link>
-          <router-link to="/sample/keepalive" tag="li"><button type="button">Vue KeepAlive</button></router-link>
-          <router-link to="/sample/child" tag="li"><button type="button">Vue ChildComponent</button></router-link>
-          <router-link to="/sample/cycle" tag="li"><button type="button">Activity Life Cycle: 생명주기</button></router-link>
-          <router-link to="/sample/validator" tag="li"><button type="button">Vee Validator: 유효성 체크</button></router-link>
-          <router-link to="/sample/store" tag="li"><button type="button">Store: vuex 사용 및 store</button></router-link>
-          <router-link to="/sample/trans" tag="li"><button type="button">Transition: 트랜지션(애니메이션)</button></router-link>
-          <router-link to="/sample/api" tag="li"><button type="button">Morpheus API</button></router-link>
-          <router-link to="/sample/swiper" tag="li"><button type="button">Swiper</button></router-link>
-        </ul>
-      </div>
-    </section>
+  <div style="width:100%; height:100%;">
+    <sample-header/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
+import sampleHeader from './component/header';
 
 export default {
-  name: 'sample-list',
+  name: 'sample-root',
+  components: {
+    sampleHeader,
+  },
   data() {
     return {
     };

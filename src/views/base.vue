@@ -30,7 +30,24 @@ export default {
  만약 default 컴포넌트가 아닌 components로 한 path에 여러개 컴포너트가 바인딩되있는 경우
  this는 default가 아닌 { default: component, comp2: component } 형태로 바인딩됩니다.
  */
-
+// $mcore.onHide('ROUTE_NAME', function () {
+//   do something...
+// });
+// $mcore.onRestore('ROUTE_NAME', function () {
+//   do something...
+// });
+// $mcore.onBack('ROUTE_NAME', function () {
+//   do something...
+// });
+// $mcore.onPause('ROUTE_NAME', function () {
+//   do something...
+// });
+// $mcore.onResume('ROUTE_NAME', function () {
+//   do something...
+// });
+// $mcore.onDestroy('ROUTE_NAME', function () {
+//   do something...
+// });
 </script>
 <!--
   scope 미선언시 global 영역으로 css가 적용됩니다.

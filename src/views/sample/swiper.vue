@@ -1,57 +1,66 @@
 <template>
   <div id="container" class="submain api">
     <section id="scroll">
-      <img :src="result.camera" style="width: 100px;">
-      <br>
-      <button  @click="openCamera">CAMERA</button>
-      <br>
-      <button @click="openPopup">POPUP</button>
-      <h3>선택한 버튼 : {{result.popup}}</h3>
+      <h1>Component</h1>
+      <swiper ref="mySwiper" :options="swiperOptions">
+        <swiper-slide v-for="item in 5" :key="'comp_'+item">Slide {{item}}</swiper-slide>
+        <div class="swiper-pagination" slot="pagination"></div>
+      </swiper>
+
+      <h1>Directive</h1>
+      <div v-swiper:mySwiper="swiperOption_a">
+        <div class="swiper-wrapper">
+          <swiper-slide v-for="item in 5" :key="'comp_'+item">Slide {{item}}</swiper-slide>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
     </section>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
+import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';
+import 'swiper/css/swiper.css';
 
 export default {
-  name: 'sample-api',
+  name: 'sample-swiper',
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  directives: {
+    swiper: directive,
+  },
+  created() {
+  },
   data() {
     return {
-      result: {
-        camera: '',
-        popup: '',
+      swiperOptions: {
+        pagination: {
+          el: '.swiper-pagination',
+        },
+      },
+      swiperOption_a: {
+        pagination: {
+          el: '.swiper-pagination',
+        },
       },
     };
   },
   computed: {
     ...mapState({}),
     ...mapGetters({}),
+    swiper() {
+      return this.$refs.mySwiper.$swiper;
+    },
+  },
+  mounted() {
+    // this.swiper.slideTo(3, 1000, false);
   },
   methods: {
     ...mapMutations([]),
     ...mapActions([]),
-    openCamera() {
-      this.$camera()
-        .then((result, option) => {
-          if (wnIf.device == DT_ANDROID) {
-            // android 일때
-            this.result.camera = result.alias;
-          } else {
-            // ios 일때
-            this.result.camera = result.path;
-          }
-        })
-        .catch((result, option) => {
-          console.log(result, option);
-        });
-    },
-    openPopup() {
-      this.$popup('테스트 메세지', ['0', '1', '2', '3'])
-        .then((idx) => {
-          this.result.popup = idx;
-        });
-    },
   },
   watch: {
 
@@ -84,9 +93,17 @@ export default {
 // });
 </script>
 <!--
-  scope 미선언시 global 영역으로 css가 적용됩니다.
+  scoped 미선언시 global 영역으로 css가 적용됩니다.
   선언할 경우 component 안에서만 적용됩니다.
  -->
 <style scoped>
-
+ div {
+   font-size: 2rem;
+ }
+ .swiper-wrapper {
+   height: 100px;
+ }
+ h1 {
+   color: black;
+ }
 </style>

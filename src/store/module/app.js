@@ -1,5 +1,3 @@
-import _deep from 'lodash/cloneDeep';
-
 const INFO_DATA = () => ({
   msg: '초기 설정값!',
   loading: true,
@@ -31,7 +29,7 @@ export default {
   getters: {
     getAppInfo(state) {
       // _deep 필수아님
-      const info = _deep(state.info);
+      const info = _.cloneDeep(state.info);
       info.isGet = 'it is get Object';
       return info;
     },

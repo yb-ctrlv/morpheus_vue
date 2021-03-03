@@ -27,11 +27,10 @@ npm run clean
 ##### webpack 설정
 1. 최초 로딩시 [img, css, font] preload 적용
 2. moment-locale ko만 번들에 포함되도록 플러그인 설정
-3. lodash 사용한 함수만 import되도록 트리쉐이킹 적용
+3. lodash, moment 전역변수 등록
 4. 외부모듈(node_modules)은 vendor라는 js파일로 생성되도록 설정
-5. img파일, font파일 10240 byte가 넘지않으면 base64로 변환되도록 설정
-6. css는 css파일로 따로 나오도록 변경(기본기능은 js파일에 포함됨)
-7. build 명령시 js, css, html 난독화 및 압축
+5. css는 css파일로 따로 나오도록 변경(기본기능은 js파일에 포함됨)
+6. build 명령시 js, css, html 난독화 및 압축
 
 
 ### 구조

@@ -1,23 +1,14 @@
-const path = require('path')
-const webpack = require('webpack')
+const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-
+const config = require('../config')['common'];
+const { NODE_ENV } = process.env;
+const { entry, output } = config;
 module.exports = {
-  entry: {
-    bundle: path.resolve(__dirname, '../src/main.js'),
-    // vendor: ['moment','vue'],
-  },
-
-  output: {
-    filename: 'js/[name].js',
-    path: path.resolve(__dirname, '../../assets/res/www'),
-    publicPath: '/res/www/',
-    chunkFilename: 'js/[name].js',
-  },
+  mode: NODE_ENV,
+  entry,
+  output,
 
   module: {
     rules: [
@@ -34,17 +25,14 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        options: {
-          plugins: ['lodash'],
-        }
       },
       {
         test: /\.(ico|png|jpg|jpeg|gif|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: [{
           loader: 'url-loader',
           options: {
-            name: 'img/[name].[ext]',
-            limit: 10240,
+            name: config.imgFile,
+            limit: config.imgLimit,
             esModule: false
           }
         }]
@@ -54,32 +42,33 @@ module.exports = {
         use: [{
           loader: 'url-loader',
           options: {
-            name: 'font/[name].[ext]',
-            limit: 10240,
+            name: config.fontFile,
+            limit: config.fontLimit,
             esModule: false
           }
         }]
       }
     ]
   },
-
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      'Assets': path.resolve(__dirname, '../src/assets'),
-      '@': path.resolve(__dirname, '../src'),
+      ...config.alias
     }
-    ,extensions: ['*', '.js', '.vue', '.json'] // 파일 찾는 순서
+    ,extensions: ['.js', '.vue', '.json', '*'] // 파일 찾는 순서
   },
 
   performance: {
-    hints: false // 파일 크기에 따른 오류 끔
+    hints: NODE_ENV === 'production' ? 'warning' : false, // 파일 크기에 따른 오류 표시
   },
 
   plugins: [
-    new LodashModuleReplacementPlugin,
+    new webpack.ProvidePlugin({
+      '_': 'lodash',
+      'moment': 'moment',
+    }),
     new MomentLocalesPlugin({
-      localesToKeep: ['ko'],
+      localesToKeep: ['ko'], // locale 중 ko 만 사용
     }),
     new HtmlWebPackPlugin({
       template: 'index.html',
@@ -95,7 +84,7 @@ module.exports = {
         return 'script';
       },
       include: 'allAssets',
-      fileWhitelist: [/bundle/,/vender/],
+      fileWhitelist: [/bundle/,/vendor.js/],
       fileBlacklist: [/\.txt/,/swiper/],
     }),
   ],
@@ -107,10 +96,6 @@ module.exports = {
           name: 'vendor',
           chunks: 'all',
         },
-        // styles: {
-        //   test: /[\\/]node_modules[\\/]/,
-        //   chunks: 'all',
-        // }
       },
     },
   },
