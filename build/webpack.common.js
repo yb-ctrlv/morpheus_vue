@@ -2,14 +2,16 @@ const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const config = require('../config')['common'];
 const { NODE_ENV } = process.env;
-const { entry, output } = config;
+const { entry, output, cssFile } = config;
 module.exports = {
   mode: NODE_ENV,
   entry,
   output,
-
   module: {
     rules: [
       {
@@ -47,6 +49,18 @@ module.exports = {
             esModule: false
           }
         }]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: NODE_ENV === 'development'
+            }
+          }
+        ],
       }
     ]
   },
@@ -75,6 +89,9 @@ module.exports = {
       filename: 'index.html',
       chunks: ['bundle', 'vendor']
     }),
+    new MiniCssExtractPlugin({
+      filename: cssFile,
+    }),
     new PreloadWebpackPlugin({
       rel: 'preload',
       as(entry) {
@@ -85,7 +102,7 @@ module.exports = {
       },
       include: 'allAssets',
       fileWhitelist: [/bundle/,/vendor.js/],
-      fileBlacklist: [/\.txt/,/swiper/],
+      fileBlacklist: [/\.txt/,/swiper/,/\.map/],
     }),
   ],
   optimization: {
@@ -98,6 +115,18 @@ module.exports = {
         },
       },
     },
+    minimize: NODE_ENV === 'production',
+    minimizer: [
+      new CssMinimizerPlugin({
+        sourceMap: NODE_ENV === 'development',
+      }),
+      new TerserPlugin({
+        extractComments: false,
+        cache: true,
+        parallel: true,
+        sourceMap: NODE_ENV === 'development'
+      })
+    ],
   },
   target: 'web',
 }

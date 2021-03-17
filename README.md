@@ -25,7 +25,7 @@ npm run clean
 
 ## Description
 ##### webpack 설정
-1. 최초 로딩시 [img, css, font] preload 적용
+1. 최초 로딩시 [css, bundle.js, verdor.js] preload 적용
 2. moment-locale ko만 번들에 포함되도록 플러그인 설정
 3. lodash, moment 전역변수 등록
 4. 외부모듈(node_modules)은 vendor라는 js파일로 생성되도록 설정
@@ -37,33 +37,37 @@ npm run clean
 
 * build: 웹팩(빌드)관련 설정 폴더 
   * clean.js  npm run clean 관련
-  * webpack.common.js  웹팩 공통
+  * webpack.common.js  웹팩 공통 설정
   * webpack.dev.js  개발시 설정
   * webpack.prod.js  배포시 설정
 
 
 * config: 설정 관련 폴더
-  * index.js webpack 설정시 필요한 세팅값(개발,배포) 굳이X
+  * index.js webpack 설정시 필요한 세팅값(개발,배포)에 사용될 설정값
   * dev.env.js 개발시 필요한 설정값
   * prod.env.js 배포시 필요한 설정값
  
- 
- 해당 설정값은 webpack.DefinePlugin 플러그인 통해 선언되며 전역적으로 사용되지는 않지만 사용을 원하는 곳에서 
+ [**.env.js]파일은 webpack.DefinePlugin 플러그인 통해 선언되며 전역적으로 사용되지는 않지만 사용을 원하는 곳에서 
 ```
  const { CONSTANT } = process.env;
  ```
+ 
  이런식으로 사용할 수 있다.
+ 
  
 * src
   * /aseets 정적 소스
   * /components Vue 컴포넌트 관리
   * /router Vue-router 관련 설정
   * /store Vuex(store) 관련 설정
+  * /common 공통 파일
   * main.js Webpack 시작점
   * App.vue 루트 컴포넌트
   * plugin.js vue 확장 함수 선언
-  * vee-validate.js vee-validate관련 설정
+  * config.validate.js vee-validate관련 설정
   * $mcore.js Mcore 관련 확장 함수 선언
+  * api.service.js api 통신시 사용할 모듈 설정
+  * global.component.js 전역적으로 사용할 컴포넌트 선언
   
 
 그외 파일들

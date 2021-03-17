@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>{{msg}}</p>
-    <img src="../../../assets\img\sample_mobile\bg_intro.png" alt="" style="width:100%;" >
+    <img src="../../../assets/img/sample_mobile/bg_intro.png" alt="" style="width:100%;" >
   </div>
 </template>
 

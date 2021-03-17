@@ -58,7 +58,8 @@
     // "consistent-return" : 0, //return문 체크
     "object-curly-newline": 0,
     "no-useless-escape": 0,
-    "linebreak-style": ["error", "windows"],
+    // "linebreak-style": ["error", "windows"],
+    "linebreak-style": 0,
     "prefer-rest-params" : 0, //argument 사용 무시
     "func-names" : 0, //함수명 작성 무시
     "no-unused-vars" : ["error", { "args": "none" }], //arguments는 사용하지 않더라도 경고하지않는다.

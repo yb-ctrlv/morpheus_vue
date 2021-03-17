@@ -23,35 +23,5 @@ export default {
     Vue.component('slide-up-down', SlideUpDown);
     Vue.component('validation-provider', ValidationProvider);
     Vue.component('validation-observer', ValidationObserver);
-    /**
-     * input 태그 확장
-     * @description v-model 버그 수정
-     */
-    Vue.component('ipt-text', {
-      template: '<input @input="$emit(\'input\', $event.target.value)" v-on="getListeners">',
-      computed: {
-        getListeners() {
-          const { input, ...others } = this.$listeners;
-          return { ...others };
-        },
-      },
-    });
-
-    /**
-     * textarea 태그 확장
-     * @description v-model 버그 수정, 초기 데이터 미표시 버그 수정
-     */
-    Vue.component('txt-area', {
-      template: '<textarea @input="$emit(\'input\', $event.target.value)" v-on="getListeners"></textarea>',
-      computed: {
-        getListeners() {
-          const { input, ...others } = this.$listeners;
-          return { ...others };
-        },
-      },
-      mounted() {
-        this.$el.value = this.$el.getAttribute('value');
-      },
-    });
   },
 };

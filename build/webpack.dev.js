@@ -6,20 +6,7 @@ const config = require('../config/index.js')['dev'];
 
 module.exports = Merge(commonConfig, {
   module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true
-          }
-        }
-        ],
-      }
-    ]
+    rules: []
   },
   devtool: config.devtool,
   plugins: [
@@ -27,7 +14,6 @@ module.exports = Merge(commonConfig, {
       'process.env': JSON.stringify(env),
     }),
   ],
-  devServer: config.devServer,
 });
 
 

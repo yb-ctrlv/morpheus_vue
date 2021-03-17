@@ -20,15 +20,17 @@ module.exports = {
       // chunk된 js 파일명
       chunkFilename: 'js/[name].js', 
     },
+    // 빌드시 사용될 css 파일명
+    cssFile: 'css/[name].[contenthash].css',
 
     // 이미지 관련 파일 명
-    imgFile: 'img/[name].[ext]',
+    imgFile: 'img/[name].[contenthash].[ext]',
     // base64변환 기준 byte
-    imgLimit: 0, 
+    imgLimit: 1, 
     // 폰트 파일 명
-    fontFile: 'font/[name].[ext]',
+    fontFile: 'font/[name].[contenthash].[ext]',
     // base64변환 기준 byte
-    fontLimit: 0, 
+    fontLimit: 1, 
 
     alias: {
       // import시 단축하여 사용하고 싶은 경우
@@ -38,11 +40,10 @@ module.exports = {
   },
   dev: {
     // webpack dev config
-    devtool: 'eval-source-map',
+    devtool: 'inline-source-map',
   },
   prod: {
     // webpack build config
-    // 빌드시 사용될 css 파일명
-    cssFile: 'css/[name].css',
+    
   }
 }

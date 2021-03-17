@@ -6,10 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack --config build/webpack.dev.js -w",
-    "build:dev": "cross-env NODE_ENV=development webpack --config build/webpack.dev.js",
     "clean": "node build/clean.js",
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js ",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.js",
     "lint": "eslint -c .eslintrc --ext .js,.vue src/",
     "lintfix": "eslint -c .eslintrc --ext .js,.vue src/ --fix"
   },
@@ -57,7 +55,7 @@
     "vue-template-compiler": "^2.6.12",
     "vuex": "^3.0.1",
     "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.8",
+    "webpack-cli": "^4.5.0",
     "webpack-merge": "4.2.2"
   },
   "engines": {
