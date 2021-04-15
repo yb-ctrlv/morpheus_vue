@@ -1,5 +1,5 @@
 
-> Morpheus Vue Sample Project
+> Morpheus Vue Guide Project
 
 ## Build Setup
 
@@ -28,7 +28,7 @@ npm run clean
 1. 최초 로딩시 [css, bundle.js, verdor.js] preload 적용
 2. moment-locale ko만 번들에 포함되도록 플러그인 설정
 3. lodash, moment 전역변수 등록
-4. 외부모듈(node_modules)은 vendor라는 js파일로 생성되도록 설정
+4. 외부모듈(node_modules 중 vue, vuex,vue-router)은 vendor라는 js파일로 생성되도록 설정
 5. css는 css파일로 따로 나오도록 변경(기본기능은 js파일에 포함됨)
 6. build 명령시 js, css, html 난독화 및 압축
 
@@ -106,3 +106,9 @@ const intro () => import(/* webpackChunkName: "chunk/intro" */'../components/int
 추가적으로 rules에 선언하여 룰을 추가하거나 비활성 시킬수 있음.
 
 eslint 지원 에디터인 경우 해당 플러그인 또는 확장프로그램을 설치할 경우 에디터에서 확인이 가능하며, 아닌 경우 명령어를 통해서 확인이 가능하다
+
+
+#### History
+##### 2021.04.15
+- 전체 소스 재작성
+- vue 2.6.12 변경 slot 사용을 위해

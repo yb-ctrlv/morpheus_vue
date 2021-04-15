@@ -7,14 +7,14 @@
 <script>
 export default {
   name: 'App',
-  created() {},
   data() {
     return {
-      transitionName: 'slide-left',
+      transitionName: '',
     };
   },
   watch: {
     $route(to, from) {
+      if (to.name === 'intro') return;
       const toDepth = to.path.split('/').length;
       const fromDepth = from.path.split('/').length;
       this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';

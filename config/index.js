@@ -11,7 +11,7 @@ module.exports = {
 
     output: {
       // contextRoot
-      publicPath: '/res/www/', 
+      publicPath: './', 
       // 생성될 경로 기준
       path: path.resolve(__dirname, '../../assets/res/www'), 
       // path: path.resolve(__dirname, '../dist'),
@@ -35,7 +35,8 @@ module.exports = {
     alias: {
       // import시 단축하여 사용하고 싶은 경우
       'src': path.resolve(__dirname, '../src'), 
-      '@': path.resolve(__dirname, '../src/components')
+      '@': path.resolve(__dirname, '../src/components'),
+      'img': path.resolve(__dirname, '../src/assets/img'),
     },
   },
   dev: {

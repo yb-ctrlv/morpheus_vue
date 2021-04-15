@@ -44,7 +44,7 @@
     "terser-webpack-plugin": "^4.1.0",
     "url-loader": "^1.1.2",
     "vee-validate": "^3.3.8",
-    "vue": "^2.5.17",
+    "vue": "^2.6.12",
     "vue-awesome-swiper": "^4.1.1",
     "vue-eslint-parser": "^7.1.1",
     "vue-fragment": "^1.5.1",

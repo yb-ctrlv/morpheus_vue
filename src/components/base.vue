@@ -1,5 +1,5 @@
 <template>
-  <div>{{helloWrold}}</div>
+  <div>{{ helloWrold }}</div>
 </template>
 
 <script>
@@ -8,8 +8,7 @@ import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 export default {
   name: 'ComponentName',
   data() {
-    return {
-    };
+    return {};
   },
   computed: {
     ...mapState({}),
@@ -19,10 +18,7 @@ export default {
     ...mapMutations([]),
     ...mapActions([]),
   },
-  watch: {
-
-  },
-
+  watch: {},
 };
 /* router에 선언된 컴포넌트에서만 사용가능합니다.(global 컴포넌트, 재사용되는 컴포넌트에서 사용 X)
  생명주기 사용하는 경우에만 주석해제 해주세요
@@ -30,12 +26,9 @@ export default {
  만약 default 컴포넌트가 아닌 components로 한 path에 여러개 컴포너트가 바인딩되있는 경우
  this는 default가 아닌 { default: component, comp2: component } 형태로 바인딩됩니다.
  */
-
 </script>
 <!--
   scope 미선언시 global 영역으로 css가 적용됩니다.
   선언할 경우 component 안에서만 적용됩니다.
  -->
-<style scoped>
-
-</style>
+<style scoped></style>

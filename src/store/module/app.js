@@ -1,36 +1,19 @@
-const INFO_DATA = () => ({
-  msg: '초기 설정값!',
-  loading: true,
-});
-
 export default {
   state: () => ({
-    info: INFO_DATA(),
+    info: M.info.app(),
   }),
   // 동기적 setter
   mutations: {
     mutAppInfo(state, payload) {
-      state.info = { ...payload };
+      state.info = M.info.app();
     },
   },
   // 비동기적 setter
-  actions: {
-    actAppInfo(context, param) {
-      context.commit('mutAppInfo', INFO_DATA());
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          context.commit('mutAppInfo', param);
-          resolve();
-        }, 1000);
-      });
-    },
-  },
+  actions: {},
   // getter
   getters: {
     getAppInfo(state) {
-      // _deep 필수아님
       const info = _.cloneDeep(state.info);
-      info.isGet = 'it is get Object';
       return info;
     },
   },

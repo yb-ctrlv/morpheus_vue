@@ -21,7 +21,6 @@ export default {
       version: M.info.app().app.version,
     };
   },
-  created() {},
   mounted() {
     // M.net.res.update 필요
     if (M.info.app().manifest.resource.target === 'doc') {
@@ -89,4 +88,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  #intro{width:100%;height:100%;background:#060d23 url('../assets/img/bg_intro.png') repeat 0 0;}
+  #intro div{width:26rem;margin:0 auto;}
+  #intro h1{margin:auto auto 2rem;text-align:center;}
+  #intro h1 img {width: 21.5rem;height: 6.0rem;}
+  #intro p{padding:.8rem;color:#fff;font-size:1.2rem;text-align:center;}
+  #intro p:first-of-type{margin-bottom:3.5rem;border-top:1px solid #fff;border-bottom:1px solid #fff;}
+  .intro-logo {position:absolute; right:1.2rem; top:.7rem; text-align:right; }
+  .intro-logo img{width:3.8rem;height:1.45rem;}
 </style>

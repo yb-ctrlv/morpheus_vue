@@ -1,19 +1,35 @@
 <template>
-  <div id="container" class="submain api">
-    <section id="scroll">
-      <img :src="result.camera" style="width: 100px;">
-      <br>
-      <button  @click="openCamera">CAMERA</button>
-      <br>
-      <button @click="openPopup">POPUP</button>
-      <h3>선택한 버튼 : {{result.popup}}</h3>
-    </section>
-  </div>
+  <api-container>
+    <pre>API를 사용하실때에는 src/plugin.js 파일을 참고하여
+this.$native.camera로 사용하시거나 아래 샘플과 같이 확장하여 사용이 가능합니다.</pre>
+    <api-content-box
+        :titleName="'CAMERA'"
+        :btnName="'M.media.camera'"
+        @btnClick="openCamera"
+        :desc="`카메라 촬영 API 입니다.`"
+      >
+        <div>촬영한 이미지: <img :src="result.camera" style="width: 100px;"></div>
+    </api-content-box>
+    <api-content-box
+        :titleName="'POPUP'"
+        :btnName="'M.pop.alert'"
+        @btnClick="openPopup"
+        :desc="`POPUP API 입니다.`"
+      >
+        <p>선택한 버튼 : {{result.popup}}</p>
+    </api-content-box>
+    <api-content-box
+        :titleName="'비동기 콜백함수'"
+        :btnName="'M.response.on'"
+        @btnClick="nativeCallback"
+        :desc="`Native 비동기 콜백함수 사용 시 콜백 예제입니다.`"
+      >
+        <p>상태 : {{result.state}}</p>
+    </api-content-box>
+  </api-container>
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
-
 export default {
   name: 'sample-api',
   data() {
@@ -21,16 +37,11 @@ export default {
       result: {
         camera: '',
         popup: '',
+        state: '대기 중',
       },
     };
   },
-  computed: {
-    ...mapState({}),
-    ...mapGetters({}),
-  },
   methods: {
-    ...mapMutations([]),
-    ...mapActions([]),
     openCamera() {
       this.$camera()
         .then((result, option) => {
@@ -52,41 +63,19 @@ export default {
           this.result.popup = idx;
         });
     },
-  },
-  watch: {
-
+    nativeCallback() {
+      const callback = M.response.on((result) => {
+        this.result.state = result;
+      }).toString();
+      this.result.state = '진행';
+      setTimeout(() => {
+        /* eslint no-eval: "off" */
+        eval(`${callback}("완료");`);
+      }, 1000);
+    },
   },
 
 };
-/* router에 선언된 컴포넌트에서만 사용가능합니다.(global 컴포넌트, 재사용되는 컴포넌트에서 사용 X)
- 생명주기 사용하는 경우에만 주석해제 해주세요
- function안에 this는 현재 route에 바인딩된 vue instance 중 마지막 컴포넌트 객체를 리턴합니다.
- 만약 default 컴포넌트가 아닌 components로 한 path에 여러개 컴포너트가 바인딩되있는 경우
- this는 default가 아닌 { default: component, comp2: component } 형태로 바인딩됩니다.
- */
-// $mcore.onHide('ROUTE_NAME', function () {
-//   do something...
-// });
-// $mcore.onRestore('ROUTE_NAME', function () {
-//   do something...
-// });
-// $mcore.onBack('ROUTE_NAME', function () {
-//   do something...
-// });
-// $mcore.onPause('ROUTE_NAME', function () {
-//   do something...
-// });
-// $mcore.onResume('ROUTE_NAME', function () {
-//   do something...
-// });
-// $mcore.onDestroy('ROUTE_NAME', function () {
-//   do something...
-// });
 </script>
-<!--
-  scope 미선언시 global 영역으로 css가 적용됩니다.
-  선언할 경우 component 안에서만 적용됩니다.
- -->
 <style scoped>
-
 </style>
